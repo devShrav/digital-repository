@@ -6,8 +6,10 @@ const adminPostsController = require("../controllers/admin-posts");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 router.get("/", adminHomeController.getAdminIndex);
-router.get("/profile", ensureAuth, adminPostsController.getAdminProfile);
-router.get("/:id", ensureAuth, adminPostsController.getPost);
+// router.get("/profile", ensureAuth, adminPostsController.getAdminProfile);
+// router.get("/:id", ensureAuth, adminPostsController.getPost);
+router.get("/profile", adminPostsController.getAdminProfile);
+router.get("/:id", adminPostsController.getPost);
 router.post("/createPost", upload.single("file"), adminPostsController.createPost);
 router.delete("/deletePost/:id", adminPostsController.deletePost);
 

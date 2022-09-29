@@ -5,7 +5,8 @@ const Admin = require("../models/Admin")
 module.exports = {
   getAdminProfile: async (req, res) => {
     try {
-      const posts = await Post.find({ user: req.user.id });
+      // const posts = await Post.find({ user: req.user.id });
+      const posts = await Post.find();
       res.render("admin-profile.ejs", { posts: posts, user: req.user });
     } catch (err) {
       console.log(err);
@@ -29,16 +30,22 @@ module.exports = {
     try {
       // Upload image to cloudinary
       const result = await cloudinary.uploader.upload(req.file.path);
+      const fileTypeArr = (result.secure_url).split('.')
+      const fileType = typeExtArr[typeExtArr.length-1]
+      console.log(fileType)
       await Post.create({
         title: req.body.title,
-        image: result.secure_url,
+        file: result.secure_url,
         cloudinaryId: result.public_id,
-        caption: req.body.caption,
+        author: req.body.author,
+        year: req.body.year,
+        language: req.body.language,
+        description: req.body.description,
+        type: type,
         likes: 0,
-        user: req.user.id,
       });
       console.log("Post has been added!");
-      res.redirect("/profile");
+      res.redirect("/admin/profile");
     } catch (err) {
       console.log(err);
     }
@@ -52,9 +59,9 @@ module.exports = {
       // Delete post from db
       await Post.remove({ _id: req.params.id });
       console.log("Deleted Post");
-      res.redirect("/profile");
+      res.redirect("/admin/profile");
     } catch (err) {
-      res.redirect("/profile");
+      res.redirect("/admin/profile");
     }
   },
 };

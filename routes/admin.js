@@ -6,8 +6,9 @@ const adminPostsController = require("../controllers/admin-posts");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 router.get("/", adminHomeController.getAdminIndex);
-router.get("/profile", ensureAuth, adminPostsController.getAdminProfile);
 // router.get("/feed", ensureAuth, adminPostsController.getFeed);
+// router.get("/profile", ensureAuth, adminPostsController.getAdminProfile);
+router.get("/profile", adminPostsController.getAdminProfile);
 router.get("/login", adminAuthController.getAdminLogin);
 router.post("/login", adminAuthController.postAdminLogin);
 router.get("/logout", adminAuthController.adminLogout);

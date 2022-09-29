@@ -2,9 +2,13 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 
-const Passport = require('passport').Passport;
-const passport = new Passport();
-const adminPassport = new Passport();
+// const Passport = require('passport').Passport;
+// const passport = new Passport();
+// const adminPassport = new Passport();
+
+const passport = require('passport');
+const adminPassport = require('passport');
+
 
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
@@ -25,8 +29,8 @@ const adminPostRoutes = require("./routes/admin-posts");
 require("dotenv").config({ path: "./config/.env" });
 
 // Passport config
-require("./config/admin-passport")(adminPassport);
 require("./config/passport")(passport);
+require("./config/admin-passport")(adminPassport);
 
 //Connect To Database
 connectDB();
@@ -60,7 +64,7 @@ app.use(
 // Passport middleware
 app.use(passport.initialize());//{userProperty: "user"}
 app.use(passport.session());
-app.use(adminPassport.initialize({userProperty: "admin"}));//{userProperty: 'admin'}
+app.use(adminPassport.initialize());//{userProperty: 'admin'}
 app.use(adminPassport.session());
 
 //Use flash messages for errors, info, ect...

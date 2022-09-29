@@ -3,9 +3,11 @@
   <div class="row mt-5">
       <div class="col-6">
           <div>
+            <% /* %>
               <p><strong>User Name</strong>: <%= user.userName %></p>
               <p><strong>Email</strong>: <%= user.email %></p>
-              <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+              <a href="/admin/logout" class="col-3 btn btn-primary">Logout</a>
+              <% */ %>
           </div>
           <div class="mt-5">
             <h2>Add a post</h2>
@@ -15,11 +17,23 @@
                   <input type="text" class="form-control" id="title" name="title">
               </div>
               <div class="mb-3">
-                <label for="caption" class="form-label">Caption</label>
-                <textarea class="form-control" id="caption" name="caption"></textarea>
+                <label for="author" class="form-label">Author/Creator</label>
+                <input type="text" class="form-control" id="author" name="author">
+            </div>
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description"></textarea>
               </div>
               <div class="mb-3">
-                <label for="imgUpload" class="form-label">Image</label>
+                <label for="year" class="form-label">Year</label>
+                <input type="text" class="form-control" id="year" name="year"></input>
+              </div>
+              <div class="mb-3">
+                <label for="language" class="form-label">Language</label>
+                <input type="text" class="form-control" id="language" name="year"></input>
+              </div>
+              <div class="mb-3">
+                <label for="imgUpload" class="form-label">File</label>
                 <input type="file" class="form-control" id="imageUpload" name="file">
               </div>
               <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
@@ -37,7 +51,7 @@
         <% } %>
         </ul>
         <div class="row justify-content-center mt-5">
-          <a class="btn btn-primary" href="/feed">Return to Feed</a>
+          <!-- <a class="btn btn-primary" href="/feed">Return to Feed</a> -->
         </div>  
       </div>  
     </div>

@@ -35,11 +35,11 @@ exports.postAdminLogin = (req, res, next) => {
       req.admin.flash("errors", info);
       return res.redirect("/admin/login");
     }
-    req.admin.logIn(user, (err) => {
+    req.logIn(user, (err) => {
       if (err) {
         return next(err);
       }
-      req.admin.flash("success", { msg: "Success! You are logged in." });
+      req.flash("success", { msg: "Success! You are logged in." });
       console.log('admin login SUCCESS!')
       res.redirect(req.session.returnTo || "/admin/profile");
     });

@@ -5,7 +5,15 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  image: {
+  author: {
+    type: String,
+    require: true,
+  },
+  year: {
+    type: String,
+    required: true,
+  },
+  file: {
     type: String,
     require: true,
   },
@@ -13,17 +21,21 @@ const PostSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  caption: {
+  language: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  type: {
     type: String,
     required: true,
   },
   likes: {
     type: Number,
     required: true,
-  },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
   },
   createdAt: {
     type: Date,
