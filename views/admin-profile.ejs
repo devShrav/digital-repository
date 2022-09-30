@@ -11,7 +11,7 @@
           </div>
           <div class="mt-5">
             <h2>Add a post</h2>
-            <form action="/admin/createPost" enctype="multipart/form-data" method="POST">
+            <form action="/admin-post/createPost" enctype="multipart/form-data" method="POST">
               <div class="mb-3">
                   <label for="title" class="form-label">Title</label>
                   <input type="text" class="form-control" id="title" name="title">
@@ -19,7 +19,7 @@
               <div class="mb-3">
                 <label for="author" class="form-label">Author/Creator</label>
                 <input type="text" class="form-control" id="author" name="author">
-            </div>
+              </div>
               <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
                 <textarea class="form-control" id="description" name="description"></textarea>
@@ -30,11 +30,11 @@
               </div>
               <div class="mb-3">
                 <label for="language" class="form-label">Language</label>
-                <input type="text" class="form-control" id="language" name="year"></input>
+                <input type="text" class="form-control" id="language" name="language"></input>
               </div>
               <div class="mb-3">
-                <label for="imgUpload" class="form-label">File</label>
-                <input type="file" class="form-control" id="imageUpload" name="file">
+                <label for="fileUpload" class="form-label">File</label>
+                <input type="file" class="form-control" id="fileUpload" name="file">
               </div>
               <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
             </form>

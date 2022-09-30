@@ -10,5 +10,6 @@ module.exports = multer({
       return;
     }
     cb(null, true);
+    console.log('Multer exit');
   },
 });
