@@ -1,31 +1,28 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
-const Admin = require("../models/Admin")
+const Admin = require("../models/User")
 
 module.exports = {
   getAdminProfile: async (req, res) => {
     try {
       // const posts = await Post.find({ user: req.user.id });
       const posts = await Post.find();
+      console.log(posts)
       res.render("admin-profile.ejs", { posts: posts, user: req.user });
     } catch (err) {
       console.log(err);
     }
   },
+  /*
   getPost: async (req, res) => {
     try {
-      const commentedBy = []
       const post = await Post.findById(req.params.id);
-      const comments = await Comment.find({post: req.params.id}).sort({createdAt: "asc"}).lean();
-      for(const comment of comments) {
-        let useri = await Admin.find(comment.user).lean()
-        commentedBy.push(useri[0].userName)
-      }
-      res.render("post.ejs", { post: post, user: req.user, comments: comments, commentedBy: commentedBy});
+      res.render("post.ejs", { post: post, user: req.user });
     } catch (err) {
       console.log(err);
     }
   },
+  */
   createPost: async (req, res) => {
     try {
       // Upload image to cloudinary

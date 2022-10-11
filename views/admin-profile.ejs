@@ -3,15 +3,13 @@
   <div class="row mt-5">
       <div class="col-6">
           <div>
-            <% /* %>
               <p><strong>User Name</strong>: <%= user.userName %></p>
               <p><strong>Email</strong>: <%= user.email %></p>
               <a href="/admin/logout" class="col-3 btn btn-primary">Logout</a>
-              <% */ %>
           </div>
           <div class="mt-5">
             <h2>Add a post</h2>
-            <form action="/admin-post/createPost" enctype="multipart/form-data" method="POST">
+            <form action="/admin-posts/createPost" enctype="multipart/form-data" method="POST">
               <div class="mb-3">
                   <label for="title" class="form-label">Title</label>
                   <input type="text" class="form-control" id="title" name="title">
@@ -42,10 +40,25 @@
       </div>
       <div class="col-6">
         <ul class="row list-unstyled">
-        <% for(var i=0; i<posts.length; i++) {%>
+        <% for(let i=0; i<posts.length; i++) {%>
           <li class="col-6 justify-content-between mt-5">
             <a href="/post/<%= posts[i]._id%>">
-              <img class="img-fluid" src="<%= posts[i].image%>">
+              <% if(posts[i].type === 'application') {%>
+                <iframe
+                src="<%= posts[i].file%>"
+                frameBorder="0"
+                scrolling="auto"
+                height="100%"
+                width="100%"
+                ></iframe>
+              <% } else if (posts[i].type === 'video') {%>
+                <video controls width="100%" src="<%= posts[i].file%>"></video>
+              <% } else if (posts[i].type === 'audio') {%>
+                <audio controls src="<%= posts[i].file%>"></audio>
+              <% } else {%>
+                <img class="img-fluid" width="100%" src="<%= posts[i].file%>">
+              <% } %>
+              <h3><%= posts[i].title%></h3>
             </a>
           </li>
         <% } %>

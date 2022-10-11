@@ -3,12 +3,12 @@ const app = express();
 
 const mongoose = require("mongoose");
 
-// const Passport = require('passport').Passport;
-// const passport = new Passport();
-// const adminPassport = new Passport();
+// const Passport = require('passport').Passport; //TBD: Enhancement
+// const passport = new Passport(); //TBD: Enhancement
+// const adminPassport = new Passport(); //TBD: Enhancement
 
 const passport = require('passport');
-const adminPassport = require('passport');
+// const adminPassport = require('passport'); //TBD: Enhancement
 
 
 const session = require("express-session");
@@ -31,7 +31,7 @@ require("dotenv").config({ path: "./config/.env" });
 
 // Passport config
 require("./config/passport")(passport);
-require("./config/admin-passport")(adminPassport);
+// require("./config/admin-passport")(adminPassport); //TBD: Enhancement
 
 //Connect To Database
 connectDB();
@@ -65,8 +65,8 @@ app.use(
 // Passport middleware
 app.use(passport.initialize());//{userProperty: "user"}
 app.use(passport.session());
-app.use(adminPassport.initialize());//{userProperty: 'admin'}
-app.use(adminPassport.session());
+// app.use(adminPassport.initialize());//{userProperty: 'admin'} //TBD: Enhancement
+// app.use(adminPassport.session()); //TBD: Enhancement
 
 //Use flash messages for errors, info, ect...
 app.use(flash());
@@ -75,7 +75,7 @@ app.use(flash());
 app.use("/", mainRoutes);
 app.use("/post", postRoutes);
 app.use("/admin", adminRoutes);
-app.use("/admin-post", adminPostRoutes);
+app.use("/admin-posts", adminPostRoutes);
 
 //Server Running
 app.listen(process.env.PORT, () => {

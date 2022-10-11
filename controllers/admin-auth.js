@@ -1,6 +1,6 @@
 const passport = require("passport");
 const validator = require("validator");
-const Admin = require("../models/Admin");
+const Admin = require("../models/User");
 
 exports.getAdminLogin = (req, res) => {
   if (req.user) {
@@ -30,7 +30,7 @@ exports.postAdminLogin = (req, res, next) => {
     if (err) {
       return next(err);
     }
-    if (!user) {
+    if (!user || !user.isAdmin) {
       console.log('ERROR: admin user not found')
       req.admin.flash("errors", info);
       return res.redirect("/admin/login");
@@ -58,6 +58,7 @@ exports.adminLogout = (req, res) => {
   });
 };
 
+/*
 exports.getAdminSignup = (req, res) => {
   if (req.user) {
     return res.redirect("/admin/profile");
@@ -66,7 +67,9 @@ exports.getAdminSignup = (req, res) => {
     title: "Create Account",
   });
 };
+*/
 
+/*
 exports.postAdminSignup = (req, res, next) => {
   const validationErrors = [];
   if (!validator.isEmail(req.body.email))
@@ -90,6 +93,7 @@ exports.postAdminSignup = (req, res, next) => {
     userName: req.body.userName,
     email: req.body.email,
     password: req.body.password,
+    isAdmin: true,
   });
 
   Admin.findOne(
@@ -118,3 +122,4 @@ exports.postAdminSignup = (req, res, next) => {
     }
   );
 };
+*/

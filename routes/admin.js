@@ -12,7 +12,7 @@ router.get("/profile", adminPostsController.getAdminProfile);
 router.get("/login", adminAuthController.getAdminLogin);
 router.post("/login", adminAuthController.postAdminLogin);
 router.get("/logout", adminAuthController.adminLogout);
-router.get("/signup", adminAuthController.getAdminSignup);
-router.post("/signup", adminAuthController.postAdminSignup);
+// router.get("/signup", adminAuthController.getAdminSignup);
+// router.post("/signup", adminAuthController.postAdminSignup);
 
 module.exports = router;

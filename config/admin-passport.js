@@ -1,12 +1,12 @@
 const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
-const Admin = require("../models/Admin");
+const Admin = require("../models/User");
 
 
 module.exports = function (passport) {
   passport.use(
     new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
-      Admin.findOne({ email: email.toLowerCase() }, (err, user) => {
+      Admin.findOne({ email: email.toLowerCase(), isAdmin: true }, (err, user) => {
         if (err) {
           return done(err);
         }

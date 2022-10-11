@@ -3,13 +3,14 @@ const router = express.Router();
 const upload = require("../middleware/multer");
 const adminHomeController = require("../controllers/admin-home");
 const adminPostsController = require("../controllers/admin-posts");
+const postsController = require("../controllers/posts");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 router.get("/", adminHomeController.getAdminIndex);
 // router.get("/profile", ensureAuth, adminPostsController.getAdminProfile);
 // router.get("/:id", ensureAuth, adminPostsController.getPost);
 router.get("/profile", adminPostsController.getAdminProfile);
-router.get("/:id", adminPostsController.getPost);
+router.get("/:id", postsController.getPost);
 router.post("/createPost", upload.single("file"), adminPostsController.createPost);
 router.delete("/deletePost/:id", adminPostsController.deletePost);
 
